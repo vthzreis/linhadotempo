@@ -13,12 +13,25 @@
       padding: 40px 0;
     }
 
+    @keyframes movimentoTorto {
+      0% {
+        transform: rotate(0deg) translateY(0);
+      }
+      50% {
+        transform: rotate(10deg) translateY(10px);
+      }
+      100% {
+        transform: rotate(-10deg) translateY(0);
+      }
+    }
+
     .timeline-vertical {
       position: relative;
       width: 4px;
       background-color: #ff9800;
       margin: 0 auto;
       height: 2000px; /* altura da linha */
+      animation: movimentoTorto 4s infinite ease-in-out; /* Animação da linha */
     }
 
     .timeline-event {
