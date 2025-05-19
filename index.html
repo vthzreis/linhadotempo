@@ -3,175 +3,173 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Linha do Tempo da História</title>
+  <title>Linha do Tempo Interativa</title>
   <style>
     body {
-      font-family: 'Segoe UI', sans-serif;
       margin: 0;
-      background: #f4f4f4;
+      font-family: 'Segoe UI', sans-serif;
+      background: #111;
+      color: white;
     }
 
     header {
-      background: #222;
-      color: white;
-      padding: 20px;
       text-align: center;
+      padding: 30px;
+      background-color: #222;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: 2.5em;
     }
 
     .timeline {
-      position: relative;
-      max-width: 900px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      padding: 30px;
+      max-width: 1000px;
       margin: auto;
-      padding: 40px 0;
     }
 
-    .timeline::after {
-      content: '';
-      position: absolute;
-      width: 6px;
-      background: #555;
-      top: 0;
-      bottom: 0;
-      left: 50%;
-      margin-left: -3px;
-    }
-
-    .container {
-      padding: 20px 40px;
+    .period {
       position: relative;
-      background-color: inherit;
-      width: 50%;
-      animation: slideIn 1s ease forwards;
-      opacity: 0;
-    }
-
-    .left {
-      left: 0;
-    }
-
-    .right {
-      left: 50%;
-    }
-
-    .container::before {
-      content: " ";
-      height: 20px;
-      width: 20px;
-      position: absolute;
-      background-color: #fff;
-      border: 4px solid #ff5722;
-      top: 15px;
-      border-radius: 50%;
-      z-index: 1;
-    }
-
-    .left::before {
-      right: -10px;
-    }
-
-    .right::before {
-      left: -10px;
-    }
-
-    .content {
-      padding: 20px;
-      background: white;
-      position: relative;
-      border-radius: 6px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      height: 300px;
+      border-radius: 12px;
+      overflow: hidden;
+      cursor: pointer;
       transition: transform 0.3s ease;
     }
 
-    .content:hover {
-      transform: scale(1.03);
+    .period:hover {
+      transform: scale(1.02);
     }
 
-    h2 {
-      margin-top: 0;
+    .period img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: brightness(0.6);
+      transition: filter 0.3s ease;
     }
 
-    @keyframes slideIn {
-      from {
-        transform: translateY(40px);
-        opacity: 0;
-      }
-      to {
-        transform: translateY(0);
-        opacity: 1;
-      }
+    .period:hover img {
+      filter: brightness(0.3);
+    }
+
+    .info {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      padding: 20px;
+      background-color: rgba(0,0,0,0.6);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+    }
+
+    .period:hover .info,
+    .period:focus-within .info {
+      opacity: 1;
+    }
+
+    .info h2 {
+      margin-bottom: 15px;
+      font-size: 1.8em;
+      color: #ff9800;
+    }
+
+    .info ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      font-size: 1.1em;
+    }
+
+    .info li {
+      margin: 5px 0;
     }
 
     @media screen and (max-width: 768px) {
-      .container {
-        width: 100%;
-        padding-left: 70px;
-        padding-right: 25px;
+      .timeline {
+        padding: 15px;
       }
 
-      .timeline::after {
-        left: 31px;
+      .period {
+        height: 220px;
       }
 
-      .left, .right {
-        left: 0;
+      .info h2 {
+        font-size: 1.4em;
       }
 
-      .left::before, .right::before {
-        left: 15px;
+      .info ul {
+        font-size: 1em;
       }
     }
   </style>
 </head>
 <body>
+
   <header>
     <h1>Linha do Tempo da História</h1>
-    <p>Uma viagem pelas principais eras da humanidade</p>
+    <p>Explore os principais momentos de cada era histórica</p>
   </header>
 
   <div class="timeline">
 
     <!-- Pré-História -->
-    <div class="container left">
-      <div class="content">
+    <div class="period" tabindex="0">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/e/e7/Chauvet_cave.jpg" alt="Pré-História">
+      <div class="info">
         <h2>Pré-História</h2>
         <ul>
           <li>Descoberta do fogo</li>
-          <li>Desenvolvimento das primeiras ferramentas</li>
-          <li>Arte rupestre nas cavernas</li>
+          <li>Primeiras ferramentas</li>
+          <li>Arte rupestre</li>
         </ul>
       </div>
     </div>
 
     <!-- Idade Antiga -->
-    <div class="container right">
-      <div class="content">
+    <div class="period" tabindex="0">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/0/00/Giza_Plateau_-_Pyramid_complex.jpg" alt="Idade Antiga">
+      <div class="info">
         <h2>Idade Antiga</h2>
         <ul>
-          <li>Criação da escrita (Mesopotâmia)</li>
-          <li>Construção das pirâmides do Egito</li>
-          <li>Democracia na Grécia Antiga</li>
+          <li>Criação da escrita</li>
+          <li>Pirâmides do Egito</li>
+          <li>Democracia grega</li>
         </ul>
       </div>
     </div>
 
     <!-- Idade Média -->
-    <div class="container left">
-      <div class="content">
+    <div class="period" tabindex="0">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/4/44/Mont_St_Michel_3%2C_Brittany%2C_France_-_July_2011.jpg" alt="Idade Média">
+      <div class="info">
         <h2>Idade Média</h2>
         <ul>
-          <li>Feudalismo e senhores feudais</li>
+          <li>Feudalismo</li>
           <li>Expansão do cristianismo</li>
-          <li>Guerras Cruzadas</li>
+          <li>Cruzadas</li>
         </ul>
       </div>
     </div>
 
     <!-- Idade Moderna -->
-    <div class="container right">
-      <div class="content">
+    <div class="period" tabindex="0">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/0/00/Leonardo_da_Vinci_-_Last_Supper_%28copy%29_-_WGA12732.jpg" alt="Idade Moderna">
+      <div class="info">
         <h2>Idade Moderna</h2>
         <ul>
-          <li>Renascimento Cultural</li>
+          <li>Renascimento</li>
           <li>Grandes Navegações</li>
           <li>Revolução Científica</li>
         </ul>
@@ -179,36 +177,19 @@
     </div>
 
     <!-- Idade Contemporânea -->
-    <div class="container left">
-      <div class="content">
+    <div class="period" tabindex="0">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/5/5e/Internet_map_1024.jpg" alt="Idade Contemporânea">
+      <div class="info">
         <h2>Idade Contemporânea</h2>
         <ul>
           <li>Revolução Francesa</li>
           <li>Guerras Mundiais</li>
-          <li>Avanço tecnológico e internet</li>
+          <li>Internet e tecnologia</li>
         </ul>
       </div>
     </div>
+
   </div>
 
-  <script>
-    // Animação de aparição com scroll
-    const containers = document.querySelectorAll('.container');
-
-    const observer = new IntersectionObserver(entries => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.style.opacity = '1';
-          observer.unobserve(entry.target);
-        }
-      });
-    }, {
-      threshold: 0.2
-    });
-
-    containers.forEach(container => {
-      observer.observe(container);
-    });
-  </script>
 </body>
 </html>
