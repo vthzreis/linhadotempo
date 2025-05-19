@@ -5,142 +5,144 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Linha do Tempo</title>
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
     body {
-      background-color: #121212;
       font-family: 'Segoe UI', sans-serif;
-      color: #fff;
-      overflow-x: hidden;
+      background-color: #121212;
+      color: white;
+      margin: 0;
       padding: 40px 20px;
     }
 
-    .timeline-container {
-      display: flex;
-      overflow-x: auto;
-      gap: 30px;
-      padding-bottom: 20px;
-      scroll-snap-type: x mandatory;
-      scrollbar-width: none; /* Firefox */
-    }
-
-    .timeline-container::-webkit-scrollbar {
-      display: none; /* Chrome */
-    }
-
-    .event-card {
-      min-width: 260px;
-      background-color: #1e1e1e;
-      border-radius: 12px;
-      flex-shrink: 0;
-      scroll-snap-align: start;
-      transition: transform 0.3s ease;
-      padding: 20px;
+    .timeline-wrapper {
       position: relative;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    .timeline-line {
+      height: 4px;
+      background-color: #ff9800;
+      position: relative;
+      top: 50px;
+      margin: 60px 0;
+    }
+
+    .timeline-point {
+      position: absolute;
+      top: -12px;
+      width: 24px;
+      height: 24px;
+      background-color: #ff9800;
+      border-radius: 50%;
+      cursor: pointer;
+      transition: transform 0.3s ease;
+    }
+
+    .timeline-point:hover {
+      transform: scale(1.2);
+    }
+
+    .info-box {
+      display: none;
+      position: absolute;
+      top: 80px;
+      width: 240px;
+      background-color: #1e1e1e;
+      padding: 20px;
+      border-radius: 10px;
       box-shadow: 0 0 12px rgba(0, 0, 0, 0.4);
-      opacity: 0;
-      transform: translateY(40px);
-      animation: fadeInUp 0.6s forwards;
+      z-index: 1;
+      transition: opacity 0.3s ease;
     }
 
-    .event-card:nth-child(even) {
-      animation-delay: 0.2s;
+    .info-box.active {
+      display: block;
     }
 
-    .event-card:nth-child(odd) {
-      animation-delay: 0.4s;
-    }
-
-    .event-icon {
-      font-size: 2.5em;
-      margin-bottom: 15px;
-      color: #ff9800;
-    }
-
-    .event-title {
-      font-size: 1.3em;
-      margin-bottom: 10px;
+    .info-box h3 {
+      margin-top: 0;
       color: #ffb74d;
     }
 
-    .event-details {
-      font-size: 1em;
+    .info-box p {
+      margin: 8px 0;
+      font-size: 0.95em;
       color: #ccc;
-      list-style: disc inside;
     }
 
-    @keyframes fadeInUp {
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    @media (max-width: 600px) {
-      .event-card {
-        min-width: 220px;
-        padding: 16px;
+    /* Responsividade */
+    @media screen and (max-width: 768px) {
+      .timeline-point {
+        width: 20px;
+        height: 20px;
       }
 
-      .event-title {
-        font-size: 1.2em;
-      }
-
-      .event-details {
-        font-size: 0.95em;
+      .info-box {
+        width: 90vw;
+        left: 5vw !important;
       }
     }
   </style>
 </head>
 <body>
 
-  <div class="timeline-container">
+  <div class="timeline-wrapper">
+    <div class="timeline-line"></div>
 
-    <div class="event-card">
-      <div class="event-icon">🔥</div>
-      <div class="event-title">Pré-História</div>
-      <ul class="event-details">
-        <li>Descoberta do fogo</li>
-        <li>Primeiras ferramentas</li>
-        <li>Arte rupestre</li>
-      </ul>
+    <!-- Pré-História -->
+    <div class="timeline-point" style="left: 5%;" onclick="showInfo(0)"></div>
+    <div class="info-box" style="left: 0%;" id="info0">
+      <h3>Pré-História</h3>
+      <p><strong>Descoberta do fogo:</strong> permitiu cozinhar alimentos e se proteger.</p>
+      <p><strong>Primeiras ferramentas:</strong> feitas de pedra para caça e corte.</p>
+      <p><strong>Arte rupestre:</strong> desenhos em cavernas representando cenas da vida.</p>
     </div>
 
-    <div class="event-card">
-      <div class="event-icon">🏺</div>
-      <div class="event-title">Idade Antiga</div>
-      <ul class="event-details">
-        <li>Criação da escrita</li>
-        <li>Pirâmides do Egito</li>
-        <li>Democracia grega</li>
-      </ul>
+    <!-- Idade Antiga -->
+    <div class="timeline-point" style="left: 30%;" onclick="showInfo(1)"></div>
+    <div class="info-box" style="left: 25%;" id="info1">
+      <h3>Idade Antiga</h3>
+      <p><strong>Criação da escrita:</strong> início da história registrada.</p>
+      <p><strong>Pirâmides do Egito:</strong> túmulos monumentais para faraós.</p>
+      <p><strong>Democracia grega:</strong> surgimento da participação política em Atenas.</p>
     </div>
 
-    <div class="event-card">
-      <div class="event-icon">🛡️</div>
-      <div class="event-title">Idade Média</div>
-      <ul class="event-details">
-        <li>Feudalismo</li>
-        <li>Expansão do cristianismo</li>
-        <li>Cruzadas</li>
-      </ul>
+    <!-- Idade Média -->
+    <div class="timeline-point" style="left: 55%;" onclick="showInfo(2)"></div>
+    <div class="info-box" style="left: 50%;" id="info2">
+      <h3>Idade Média</h3>
+      <p><strong>Feudalismo:</strong> sistema de organização baseado em terras e servidão.</p>
+      <p><strong>Cristianismo:</strong> expansão da influência da Igreja.</p>
+      <p><strong>Cruzadas:</strong> guerras religiosas entre cristãos e muçulmanos.</p>
     </div>
 
-    <div class="event-card">
-      <div class="event-icon">🚢</div>
-      <div class="event-title">Idade Moderna</div>
-      <ul class="event-details">
-        <li>Renascimento</li>
-        <li>Grandes Navegações</li>
-        <li>Revolução Científica</li>
-      </ul>
+    <!-- Idade Moderna -->
+    <div class="timeline-point" style="left: 80%;" onclick="showInfo(3)"></div>
+    <div class="info-box" style="left: 75%;" id="info3">
+      <h3>Idade Moderna</h3>
+      <p><strong>Renascimento:</strong> valorização da arte, ciência e do ser humano.</p>
+      <p><strong>Navegações:</strong> exploração marítima e descobertas de novos continentes.</p>
+      <p><strong>Revolução Científica:</strong> avanços na forma de entender o mundo.</p>
     </div>
-
   </div>
+
+  <script>
+    function showInfo(index) {
+      // Fecha todos
+      const boxes = document.querySelectorAll('.info-box');
+      boxes.forEach(box => box.classList.remove('active'));
+
+      // Abre o clicado
+      document.getElementById(`info${index}`).classList.add('active');
+    }
+
+    // Fecha caixas clicando fora
+    window.addEventListener('click', function (e) {
+      if (!e.target.classList.contains('timeline-point')) {
+        document.querySelectorAll('.info-box').forEach(box => box.classList.remove('active'));
+      }
+    });
+  </script>
 
 </body>
 </html>
