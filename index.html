@@ -18,7 +18,7 @@
       width: 4px;
       background-color: #ff9800;
       margin: 0 auto;
-      height: 1800px; /* altura da linha */
+      height: 2000px; /* altura da linha */
     }
 
     .timeline-event {
@@ -75,6 +75,12 @@
       color: #ccc;
     }
 
+    .event-image {
+      width: 100%;
+      border-radius: 10px;
+      margin-top: 20px;
+    }
+
     /* Responsividade */
     @media screen and (max-width: 600px) {
       .event-box {
@@ -83,6 +89,17 @@
         transform: translateX(-50%);
       }
     }
+
+    /* Efeito de fade-in para o conteúdo */
+    .event-box {
+      opacity: 0;
+      transition: opacity 0.5s ease;
+    }
+
+    .event-box.active {
+      opacity: 1;
+    }
+
   </style>
 </head>
 <body>
@@ -97,6 +114,8 @@
         <p><strong>Paleolítico:</strong> uso de ferramentas rudimentares, caça e coleta.</p>
         <p><strong>Neolítico:</strong> agricultura, domesticação de animais e aldeias.</p>
         <p><strong>Idade dos Metais:</strong> uso do cobre, bronze e ferro para armas e utensílios.</p>
+        <!-- Imagem da Pré-História -->
+        <img src="https://media.istockphoto.com/id/1194512812/pt/foto/primeval-caveman-wearing-animal-skin-holds-stone-tipped-spear-looks-around-explores.jpg?s=612x612&w=0&k=20&c=qvCdzVqGBalJZfGVl0AhDymd1mB1Xf2v0HeKkncXtEw=" alt="Pré-História" class="event-image">
       </div>
     </div>
 
