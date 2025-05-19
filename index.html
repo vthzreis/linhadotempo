@@ -15,76 +15,93 @@
       background-color: #121212;
       font-family: 'Segoe UI', sans-serif;
       color: #fff;
+      overflow-x: hidden;
       padding: 40px 20px;
     }
 
-    .timeline {
+    .timeline-container {
       display: flex;
-      flex-direction: column;
+      overflow-x: auto;
       gap: 30px;
-      max-width: 900px;
-      margin: auto;
+      padding-bottom: 20px;
+      scroll-snap-type: x mandatory;
+      scrollbar-width: none; /* Firefox */
     }
 
-    .event {
+    .timeline-container::-webkit-scrollbar {
+      display: none; /* Chrome */
+    }
+
+    .event-card {
+      min-width: 260px;
+      background-color: #1e1e1e;
+      border-radius: 12px;
+      flex-shrink: 0;
+      scroll-snap-align: start;
+      transition: transform 0.3s ease;
+      padding: 20px;
       position: relative;
-      background: #1e1e1e;
-      border-left: 5px solid #ff9800;
-      padding: 20px 30px;
-      border-radius: 8px;
-      transition: background 0.3s ease, transform 0.2s ease;
-      cursor: pointer;
+      box-shadow: 0 0 12px rgba(0, 0, 0, 0.4);
+      opacity: 0;
+      transform: translateY(40px);
+      animation: fadeInUp 0.6s forwards;
     }
 
-    .event:hover {
-      background: #2a2a2a;
-      transform: scale(1.01);
+    .event-card:nth-child(even) {
+      animation-delay: 0.2s;
     }
 
-    .event::before {
-      content: '';
-      position: absolute;
-      left: -12px;
-      top: 20px;
-      width: 12px;
-      height: 12px;
-      background: #ff9800;
-      border-radius: 50%;
+    .event-card:nth-child(odd) {
+      animation-delay: 0.4s;
+    }
+
+    .event-icon {
+      font-size: 2.5em;
+      margin-bottom: 15px;
+      color: #ff9800;
     }
 
     .event-title {
-      font-size: 1.5em;
+      font-size: 1.3em;
       margin-bottom: 10px;
       color: #ffb74d;
     }
 
     .event-details {
-      font-size: 1.1em;
-      line-height: 1.6;
-      list-style: disc inside;
+      font-size: 1em;
       color: #ccc;
+      list-style: disc inside;
+    }
+
+    @keyframes fadeInUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
 
     @media (max-width: 600px) {
-      .event {
-        padding: 20px;
+      .event-card {
+        min-width: 220px;
+        padding: 16px;
       }
 
       .event-title {
-        font-size: 1.3em;
+        font-size: 1.2em;
       }
 
       .event-details {
-        font-size: 1em;
+        font-size: 0.95em;
       }
     }
   </style>
 </head>
 <body>
 
-  <div class="timeline">
+  <div class="timeline-container">
 
-    <div class="event">
+    <div class="event-card">
+      <div class="event-icon">🔥</div>
       <div class="event-title">Pré-História</div>
       <ul class="event-details">
         <li>Descoberta do fogo</li>
@@ -93,7 +110,8 @@
       </ul>
     </div>
 
-    <div class="event">
+    <div class="event-card">
+      <div class="event-icon">🏺</div>
       <div class="event-title">Idade Antiga</div>
       <ul class="event-details">
         <li>Criação da escrita</li>
@@ -102,7 +120,8 @@
       </ul>
     </div>
 
-    <div class="event">
+    <div class="event-card">
+      <div class="event-icon">🛡️</div>
       <div class="event-title">Idade Média</div>
       <ul class="event-details">
         <li>Feudalismo</li>
@@ -111,7 +130,8 @@
       </ul>
     </div>
 
-    <div class="event">
+    <div class="event-card">
+      <div class="event-icon">🚢</div>
       <div class="event-title">Idade Moderna</div>
       <ul class="event-details">
         <li>Renascimento</li>
