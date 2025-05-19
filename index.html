@@ -2,105 +2,79 @@
 <html lang="pt-br">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Linha do tempo interativa com os principais períodos da história humana.">
-  <title>Linha do Tempo Interativa da História</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Linha do Tempo</title>
   <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
     body {
-      margin: 0;
+      background-color: #121212;
       font-family: 'Segoe UI', sans-serif;
-      background: #111;
-      color: white;
-    }
-
-    header {
-      text-align: center;
-      padding: 30px;
-      background-color: #222;
-    }
-
-    h1 {
-      margin: 0;
-      font-size: 2.5em;
+      color: #fff;
+      padding: 40px 20px;
     }
 
     .timeline {
       display: flex;
       flex-direction: column;
-      gap: 20px;
-      padding: 30px;
-      max-width: 1000px;
+      gap: 30px;
+      max-width: 900px;
       margin: auto;
     }
 
-    .period {
+    .event {
       position: relative;
-      height: 200px;
-      border-radius: 12px;
+      background: #1e1e1e;
+      border-left: 5px solid #ff9800;
+      padding: 20px 30px;
+      border-radius: 8px;
+      transition: background 0.3s ease, transform 0.2s ease;
       cursor: pointer;
-      transition: transform 0.3s ease;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background-color: #333;
-      overflow: hidden;
     }
 
-    .period:hover {
-      transform: scale(1.02);
+    .event:hover {
+      background: #2a2a2a;
+      transform: scale(1.01);
     }
 
-    .period .label {
-      font-size: 1.8em;
-      color: white;
-      z-index: 1;
-    }
-
-    .info {
+    .event::before {
+      content: '';
       position: absolute;
-      inset: 0;
-      background-color: rgba(0, 0, 0, 0.85);
-      opacity: 0;
-      transition: opacity 0.3s ease;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-      padding: 20px;
+      left: -12px;
+      top: 20px;
+      width: 12px;
+      height: 12px;
+      background: #ff9800;
+      border-radius: 50%;
     }
 
-    .period:hover .info,
-    .period:focus-within .info {
-      opacity: 1;
-    }
-
-    .info h2 {
+    .event-title {
+      font-size: 1.5em;
       margin-bottom: 10px;
-      font-size: 1.6em;
-      color: #ff9800;
+      color: #ffb74d;
     }
 
-    .info ul {
-      list-style: none;
-      padding: 0;
+    .event-details {
       font-size: 1.1em;
+      line-height: 1.6;
+      list-style: disc inside;
+      color: #ccc;
     }
 
-    .info li {
-      margin: 6px 0;
-    }
-
-    @media screen and (max-width: 768px) {
-      .period {
-        height: 160px;
+    @media (max-width: 600px) {
+      .event {
+        padding: 20px;
       }
 
-      .info h2 {
+      .event-title {
         font-size: 1.3em;
       }
 
-      .info ul {
+      .event-details {
         font-size: 1em;
       }
     }
@@ -108,61 +82,45 @@
 </head>
 <body>
 
-  <header>
-    <h1>Linha do Tempo da História</h1>
-    <p>Explore os principais momentos de cada era</p>
-  </header>
+  <div class="timeline">
 
-  <main class="timeline">
+    <div class="event">
+      <div class="event-title">Pré-História</div>
+      <ul class="event-details">
+        <li>Descoberta do fogo</li>
+        <li>Primeiras ferramentas</li>
+        <li>Arte rupestre</li>
+      </ul>
+    </div>
 
-    <!-- Pré-História -->
-    <section class="period" tabindex="0" style="background-color: #4E342E;" aria-label="Pré-História: descubra eventos como o fogo e arte rupestre.">
-      <div class="label">Pré-História</div>
-      <div class="info">
-        <h2>Pré-História</h2>
-        <ul>
-          <li>Descoberta do fogo</li>
-          <li>Primeiras ferramentas</li>
-          <li>Arte rupestre</li>
-        </ul>
-      </div>
-    </section>
+    <div class="event">
+      <div class="event-title">Idade Antiga</div>
+      <ul class="event-details">
+        <li>Criação da escrita</li>
+        <li>Pirâmides do Egito</li>
+        <li>Democracia grega</li>
+      </ul>
+    </div>
 
-    <!-- Idade Antiga -->
-    <section class="period" tabindex="0" style="background-color: #6A1B9A;" aria-label="Idade Antiga: escrita, pirâmides e democracia grega.">
-      <div class="label">Idade Antiga</div>
-      <div class="info">
-        <h2>Idade Antiga</h2>
-        <ul>
-          <li>Criação da escrita</li>
-          <li>Pirâmides do Egito</li>
-          <li>Democracia grega</li>
-        </ul>
-      </div>
-    </section>
+    <div class="event">
+      <div class="event-title">Idade Média</div>
+      <ul class="event-details">
+        <li>Feudalismo</li>
+        <li>Expansão do cristianismo</li>
+        <li>Cruzadas</li>
+      </ul>
+    </div>
 
-    <!-- Idade Média -->
-    <section class="period" tabindex="0" style="background-color: #1565C0;" aria-label="Idade Média: feudalismo, cruzadas e cristianismo.">
-      <div class="label">Idade Média</div>
-      <div class="info">
-        <h2>Idade Média</h2>
-        <ul>
-          <li>Feudalismo</li>
-          <li>Expansão do cristianismo</li>
-          <li>Cruzadas</li>
-        </ul>
-      </div>
-    </section>
+    <div class="event">
+      <div class="event-title">Idade Moderna</div>
+      <ul class="event-details">
+        <li>Renascimento</li>
+        <li>Grandes Navegações</li>
+        <li>Revolução Científica</li>
+      </ul>
+    </div>
 
-    <!-- Idade Moderna -->
-    <section class="period" tabindex="0" style="background-color: #2E7D32;" aria-label="Idade Moderna: renascimento, navegações e ciência.">
-      <div class="label">Idade Moderna</div>
-      <div class="info">
-        <h2>Idade Moderna</h2>
-        <ul>
-          <li>Renascimento</li>
-          <li>Grandes Navegações</li>
-          <li>Revolução Científica</li>
-        </ul>
-      </div>
-    </section
+  </div>
+
+</body>
+</html>
