@@ -3,143 +3,153 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Linha do Tempo</title>
+  <title>Linha do Tempo Vertical</title>
   <style>
     body {
       font-family: 'Segoe UI', sans-serif;
       background-color: #121212;
       color: white;
       margin: 0;
-      padding: 40px 20px;
+      padding: 40px 0;
     }
 
-    .timeline-wrapper {
+    .timeline-vertical {
       position: relative;
-      max-width: 1000px;
-      margin: 0 auto;
-    }
-
-    .timeline-line {
-      height: 4px;
+      width: 4px;
       background-color: #ff9800;
-      position: relative;
-      top: 50px;
-      margin: 60px 0;
+      margin: 0 auto;
+      height: 1800px; /* altura da linha */
     }
 
-    .timeline-point {
+    .timeline-event {
       position: absolute;
-      top: -12px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      cursor: pointer;
+    }
+
+    .timeline-dot {
       width: 24px;
       height: 24px;
       background-color: #ff9800;
       border-radius: 50%;
-      cursor: pointer;
+      margin-bottom: 10px;
       transition: transform 0.3s ease;
+      z-index: 2;
     }
 
-    .timeline-point:hover {
+    .timeline-dot:hover {
       transform: scale(1.2);
     }
 
-    .info-box {
+    .event-box {
       display: none;
-      position: absolute;
-      top: 80px;
-      width: 240px;
       background-color: #1e1e1e;
       padding: 20px;
       border-radius: 10px;
-      box-shadow: 0 0 12px rgba(0, 0, 0, 0.4);
+      width: 280px;
+      text-align: left;
+      box-shadow: 0 0 12px rgba(0,0,0,0.4);
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      margin-top: 10px;
       z-index: 1;
-      transition: opacity 0.3s ease;
     }
 
-    .info-box.active {
+    .event-box.active {
       display: block;
     }
 
-    .info-box h3 {
-      margin-top: 0;
+    .event-box h3 {
       color: #ffb74d;
+      margin-top: 0;
     }
 
-    .info-box p {
+    .event-box p {
       margin: 8px 0;
       font-size: 0.95em;
       color: #ccc;
     }
 
     /* Responsividade */
-    @media screen and (max-width: 768px) {
-      .timeline-point {
-        width: 20px;
-        height: 20px;
-      }
-
-      .info-box {
-        width: 90vw;
-        left: 5vw !important;
+    @media screen and (max-width: 600px) {
+      .event-box {
+        width: 85vw;
+        left: 50%;
+        transform: translateX(-50%);
       }
     }
   </style>
 </head>
 <body>
 
-  <div class="timeline-wrapper">
-    <div class="timeline-line"></div>
+  <div class="timeline-vertical">
 
     <!-- Pré-História -->
-    <div class="timeline-point" style="left: 5%;" onclick="showInfo(0)"></div>
-    <div class="info-box" style="left: 0%;" id="info0">
-      <h3>Pré-História</h3>
-      <p><strong>Descoberta do fogo:</strong> permitiu cozinhar alimentos e se proteger.</p>
-      <p><strong>Primeiras ferramentas:</strong> feitas de pedra para caça e corte.</p>
-      <p><strong>Arte rupestre:</strong> desenhos em cavernas representando cenas da vida.</p>
+    <div class="timeline-event" style="top: 100px;" onclick="showBox(0)">
+      <div class="timeline-dot"></div>
+      <div class="event-box" id="box0">
+        <h3>Pré-História</h3>
+        <p><strong>Paleolítico:</strong> uso de ferramentas rudimentares, caça e coleta.</p>
+        <p><strong>Neolítico:</strong> agricultura, domesticação de animais e aldeias.</p>
+        <p><strong>Idade dos Metais:</strong> uso do cobre, bronze e ferro para armas e utensílios.</p>
+      </div>
     </div>
 
     <!-- Idade Antiga -->
-    <div class="timeline-point" style="left: 30%;" onclick="showInfo(1)"></div>
-    <div class="info-box" style="left: 25%;" id="info1">
-      <h3>Idade Antiga</h3>
-      <p><strong>Criação da escrita:</strong> início da história registrada.</p>
-      <p><strong>Pirâmides do Egito:</strong> túmulos monumentais para faraós.</p>
-      <p><strong>Democracia grega:</strong> surgimento da participação política em Atenas.</p>
+    <div class="timeline-event" style="top: 500px;" onclick="showBox(1)">
+      <div class="timeline-dot"></div>
+      <div class="event-box" id="box1">
+        <h3>Idade Antiga</h3>
+        <p><strong>Criação da escrita:</strong> início da história registrada.</p>
+        <p><strong>Pirâmides do Egito:</strong> construções monumentais para os faraós.</p>
+        <p><strong>Democracia grega:</strong> primeiros passos da participação política.</p>
+      </div>
     </div>
 
     <!-- Idade Média -->
-    <div class="timeline-point" style="left: 55%;" onclick="showInfo(2)"></div>
-    <div class="info-box" style="left: 50%;" id="info2">
-      <h3>Idade Média</h3>
-      <p><strong>Feudalismo:</strong> sistema de organização baseado em terras e servidão.</p>
-      <p><strong>Cristianismo:</strong> expansão da influência da Igreja.</p>
-      <p><strong>Cruzadas:</strong> guerras religiosas entre cristãos e muçulmanos.</p>
+    <div class="timeline-event" style="top: 900px;" onclick="showBox(2)">
+      <div class="timeline-dot"></div>
+      <div class="event-box" id="box2">
+        <h3>Idade Média</h3>
+        <p><strong>Feudalismo:</strong> sistema baseado em senhores feudais e servos.</p>
+        <p><strong>Expansão do cristianismo:</strong> influência da Igreja na sociedade.</p>
+        <p><strong>Cruzadas:</strong> expedições militares religiosas.</p>
+      </div>
     </div>
 
     <!-- Idade Moderna -->
-    <div class="timeline-point" style="left: 80%;" onclick="showInfo(3)"></div>
-    <div class="info-box" style="left: 75%;" id="info3">
-      <h3>Idade Moderna</h3>
-      <p><strong>Renascimento:</strong> valorização da arte, ciência e do ser humano.</p>
-      <p><strong>Navegações:</strong> exploração marítima e descobertas de novos continentes.</p>
-      <p><strong>Revolução Científica:</strong> avanços na forma de entender o mundo.</p>
+    <div class="timeline-event" style="top: 1300px;" onclick="showBox(3)">
+      <div class="timeline-dot"></div>
+      <div class="event-box" id="box3">
+        <h3>Idade Moderna</h3>
+        <p><strong>Renascimento:</strong> valorização da razão, ciência e artes.</p>
+        <p><strong>Grandes Navegações:</strong> descobrimentos e expansão europeia.</p>
+        <p><strong>Revolução Científica:</strong> avanços no conhecimento científico.</p>
+      </div>
     </div>
+
   </div>
 
   <script>
-    function showInfo(index) {
-      // Fecha todos
-      const boxes = document.querySelectorAll('.info-box');
-      boxes.forEach(box => box.classList.remove('active'));
+    function showBox(index) {
+      // Fecha todos os painéis
+      document.querySelectorAll('.event-box').forEach(box => {
+        box.classList.remove('active');
+      });
 
-      // Abre o clicado
-      document.getElementById(`info${index}`).classList.add('active');
+      // Abre o painel clicado
+      document.getElementById(`box${index}`).classList.add('active');
     }
 
-    // Fecha caixas clicando fora
+    // Fecha se clicar fora
     window.addEventListener('click', function (e) {
-      if (!e.target.classList.contains('timeline-point')) {
-        document.querySelectorAll('.info-box').forEach(box => box.classList.remove('active'));
+      if (!e.target.closest('.timeline-event')) {
+        document.querySelectorAll('.event-box').forEach(box => box.classList.remove('active'));
       }
     });
   </script>
